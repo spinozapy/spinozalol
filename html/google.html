@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google</title>
+    <style>
+
+body {
+    background-color: #202124;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+}
+
+.google-logo img {
+    width: 272px;
+    height: 92px;
+}
+
+.search-form {
+    margin-top: 20px;
+}
+
+.search-input {
+    width: 500px;
+    padding: 10px;
+    border-radius: 24px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+}
+
+.buttons {
+    margin-top: 20px;
+}
+
+.search-button, .lucky-button {
+    background-color: #303134;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.search-button:hover, .lucky-button:hover {
+    background-color: #5f6368;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="google-logo">
+            <img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" alt="Google Logo">
+        </div>
+        <form class="search-form" action="https://www.google.com/search" method="GET">
+            <input type="text" name="q" class="search-input" required>
+            <div class="buttons">
+                <input type="submit" value="Google'da Ara" class="search-button">
+                <input type="submit" value="Kendimi Şanslı Hissediyorum" class="lucky-button" onclick="luckySearch()">
+            </div>
+        </form>
+    </div>
+    <script>
+
+function luckySearch() {
+    const form = document.querySelector('.search-form');
+    const input = document.querySelector('.search-input');
+    form.action = 'https://www.google.com/search?btnI=I';
+    form.submit();
+}
+
+    </script>
+</body>
+</html>

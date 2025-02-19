@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.7">
+    <title>Language Choice</title>
+    <style>
+        body {
+            background-color: white;
+            color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .question {
+            font-size: 50px;
+            font-weight: bold;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .buttons button {
+            background-color: white;
+            border: 2px solid black;
+            padding: 10px 20px;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            border-radius: 5px;
+        }
+
+        .buttons button img {
+            width: 30px;
+            height: 20px;
+            margin-right: 10px;
+        }
+
+        .centered-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 50px;
+            font-style: italic;
+            text-align: center;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container" id="languageChoice">
+        <p class="question">English or Spanish?</p>
+        <div class="buttons">
+            <button id="englishButton">
+                <img src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" alt="English Flag">
+                English
+            </button>
+            <button id="spanishButton">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Spain.svg" alt="Spanish Flag">
+                Spanish
+            </button>
+        </div>
+    </div>
+    <audio id="backgroundMusic" loop>
+        <source src="https://spinoza.wtf/static.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const englishButton = document.getElementById('englishButton');
+        const spanishButton = document.getElementById('spanishButton');
+        const languageChoice = document.getElementById('languageChoice');
+        const backgroundMusic = document.getElementById('backgroundMusic');
+        let messageShown = false;
+        let selectedLanguage = '';
+
+        englishButton.addEventListener('click', function() {
+            languageChoice.style.display = 'none';
+            showText("Whoever moves first is gay.");
+            backgroundMusic.currentTime = 12;
+            backgroundMusic.play();
+            selectedLanguage = 'english';
+            document.title = "Whoever moves first is gay.";
+            setTimeout(() => {
+                document.addEventListener('mousemove', handleMouseMove);
+                document.addEventListener('keydown', handleKeyDown);
+            }, 444);
+        });
+
+        spanishButton.addEventListener('click', function() {
+            languageChoice.style.display = 'none';
+            showText("Quien se mueve primero es gay.");
+            backgroundMusic.currentTime = 12;
+            backgroundMusic.play();
+            selectedLanguage = 'spanish';
+            document.title = "Quien se mueve primero es gay.";
+            setTimeout(() => {
+                document.addEventListener('mousemove', handleMouseMove);
+                document.addEventListener('keydown', handleKeyDown);
+            }, 444);
+        });
+
+        function handleMouseMove() {
+            if (messageShown) {
+                const centeredText = document.querySelector('.centered-text');
+                if (selectedLanguage === 'english') {
+                    centeredText.textContent = "You're gay LOL!";
+                    document.title = "You're gay LOL!";
+                } else if (selectedLanguage === 'spanish') {
+                    centeredText.textContent = "¡Eres gay LOL!";
+                    document.title = "¡Eres gay LOL!";
+                }
+            }
+        }
+
+        function handleKeyDown(e) {
+            if (messageShown) {
+                const centeredText = document.querySelector('.centered-text');
+                if (selectedLanguage === 'english') {
+                    centeredText.textContent = "You're gay LOL!";
+                    document.title = "You're gay LOL!";
+                } else if (selectedLanguage === 'spanish') {
+                    centeredText.textContent = "¡Eres gay LOL!";
+                    document.title = "¡Eres gay LOL!";
+                }
+            }
+        }
+
+        function showText(text) {
+            const centeredText = document.createElement('div');
+            centeredText.classList.add('centered-text');
+            centeredText.textContent = text;
+            document.body.appendChild(centeredText);
+            messageShown = true;
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.addEventListener('keydown', function(e) {
+                if (e.ctrlKey && (e.key === 'u' || e.key === 'F12')) {
+                    e.preventDefault();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

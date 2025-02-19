@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{ Lain }</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: black;
+            animation: backgroundChange 1ms infinite;
+        }
+
+        @keyframes backgroundChange {
+            0% { background-color: black; }
+            50% { background-color: white; }
+            100% { background-color: black; }
+        }
+
+        .centered-image {
+            background-image: url('https://spinoza.wtf/img/lain.gif');
+            
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+
+            min-width: calc(100vw - 13px); min-height: calc(100vh - 37px); 
+            max-width: calc(100vw - 13px); max-height: calc(100vh - 37px);
+
+            width: calc(100vw - 13px); height: calc(100vh - 37px); 
+        }
+
+    </style>
+</head>
+<body>
+    <div class="centered-image"></div>
+
+    <script>
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && (e.key === 'u' || e.key === 'U')) {
+                e.preventDefault();
+                window.location.href = 'https://spinoza.wtf/lain';
+            }
+        });
+
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (
+                (e.ctrlKey && 
+                (
+                e.keyCode === 67    || 
+                e.keyCode === 86    || 
+                e.keyCode === 85    || 
+                e.keyCode === 117)) || 
+               (e.keyCode === 123)
+            ){
+                e.preventDefault();
+                window.location.href = 'https://spinoza.wtf/lain';
+            }
+        });
+    </script>
+</body>
+</html>

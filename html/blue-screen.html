@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=no" />
+    <title>:(</title>
+<html>
+<body>
+ <div id="page">
+    <div id="container">
+      <h1>:(</h1>
+      <h2>Your Website ran into a problem and needs to restart. We're just collecting some error info, and then we'll restart for
+        you.</h2>
+      <h2>
+        <span id="percentage">0</span>% complete</h2>
+      <div id="details">
+        <div id="qr">
+          <div id="image">
+            <img src="https://spinoza.wtf/img/blue-qr-code.png" alt="qr" />
+          </div>
+        </div>
+        <div id="stopcode">
+          <h4>For more information about this issue and possible fixes, visit
+            <br/>https://spinoza.wtf/</h4>
+          <h5>If you call a support person, give them this info:
+            <br/>Stop Code: SPINOZA_WTF_ERROR</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+
+  <style>
+
+    body {
+        font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+        background: #055a8f;
+        color: #fefeff;
+        height: 100vh;
+        margin: 0;
+    }
+    
+    #page {
+        display: table;
+        height: 100%;
+        margin: 0 auto;
+        width: 70%;
+        font-size: 1.9vw;
+        padding-right: 15%; /* Değiştirilen stil: Sayfanın sağından boşluk bırakmak için */
+    }
+    
+    #container {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    body {
+    scrollbar-width: none; 
+    -ms-overflow-style: none; 
+    overflow: -moz-scrollbars-none; 
+    }
+    
+    ::-webkit-scrollbar {
+      display: none;
+    }
+
+    html {
+        scrollbar-width: none;
+    }
+    
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+        font-weight: normal;
+        padding: 0;
+        margin: 25px 0;
+        margin-top: 0;
+        font-weight: 300;
+    }
+    
+    h1 {
+        font-size: 6em;
+        margin-bottom: 10px;
+    }
+    
+    h2 {
+        font-size: 1.3em;
+    }
+    
+    h4 {
+        font-size: 1em;
+        line-height: 1.5em;
+    }
+    
+    h5 {
+        line-height: 1.1em;
+        font-size: 0.8em;
+    }
+    
+    #details {
+        display: flex;
+        flex-flow: row;
+        flex-wrap: nowrap;
+        padding-top: 10px;
+    }
+    
+    #qr {
+        flex: 0 1 auto;
+    }
+    
+    #image {
+        background: white;
+        padding: 5px;
+        line-height: 0;
+    }
+    
+    #image img {
+        width: 5.8em;
+        height: 5.8em;
+    }
+    
+    #stopcode {
+        padding-left: 10px;
+        flex: 1 1 auto;
+    }
+    
+    @media (min-width: 840px) {
+        #page {
+            font-size: 140%;
+            width: 800px;
+        }
+    }
+    
+    </style>
+
+<script>
+
+  var percentageElement = document.getElementById("percentage");
+  var percentage = 0;
+  
+  function process() {
+    percentage += parseInt(Math.random() * 10);
+    if (percentage > 100) {
+      percentage = 100;
+      percentageElement.innerText = "100"; 
+      setTimeout(function() {
+        window.location.href = "https://spinoza.wtf"; 
+      }, 1000);
+      return; 
+    }
+    percentageElement.innerText = percentage;
+    processInterval();
+  }
+  
+  function processInterval() {
+    setTimeout(process, Math.random() * (1000 - 500) + 500)
+  }
+  processInterval();
+
+  document.addEventListener('keydown', function (e) {
+        if (e.ctrlKey && (e.key === 'u' || e.key === 'U')) {
+            e.preventDefault();
+        }
+    });
+
+    document.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+    });
+
+    document.addEventListener('keydown', function (e) {
+    if (e.keyCode === 123) { 
+        e.preventDefault();
+    }
+});
+
+document.addEventListener('contextmenu', function(e) {
+    e.preventDefault(); 
+});
+
+document.addEventListener('selectstart', function(e) {
+    e.preventDefault(); 
+});
+  
+document.addEventListener('click', function() {
+  if (document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
+    if (document.exitFullscreen) {
+      document.requestFullscreen();
+    } else if (document.webkitExitFullscreen) {
+      document.webkitRequestFullscreen();
+    } else if (document.msExitFullscreen) {
+      document.msRequestFullscreen();
+    }
+  } else {
+    if (document.documentElement.requestFullscreen) {
+      document.documentElement.requestFullscreen();
+    } else if (document.documentElement.webkitRequestFullscreen) {
+      document.documentElement.webkitRequestFullscreen();
+    } else if (document.documentElement.msRequestFullscreen) {
+      document.documentElement.msRequestFullscreen();
+    }
+  }
+});
+
+  </script>

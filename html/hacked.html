@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5, user-scalable=no">
+
+    <title>Your files are encrypted.</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="bold">#OPdailyallowance.</h1>
+        <f></f>
+        <h2 class="bold">Your files are encrypted.</h2>
+        <p class="custom-margin">To get the key to decrypt files, you have to pay <span class="red bold">1 million USD.</span> If payment is not made<br>by <span class="red bold">tomorrow night</span>, we'll brick your entire system.</p>
+        <h3 class="bold" style="margin-top: 10px;">More instructions forthcoming.</h3>
+        <span class="timeleft-text large" id="countdown" style="display: none;">Time left: <span id="time-left" class="red large"></span></span>
+        <div class="divider" style="display: none;"></div>
+        <p class="small" style="margin-top: 5px; font-weight: normal; display: none;">Your system:  <span id="system-type" class="red bold">(64x)</span> First connect IP:  <span id="user-ip" class="red bold"></span> Total encrypted <span class="red bold">5.326</span> encrypted files</p>
+    </div>
+
+    <div class="button-container">
+        <button class="button black">Refresh</button>
+        <button class="button red">Payment</button>
+        <button class="button black">FAQ</button>
+        <button class="button red">Decrypt first file for FREE</button>
+        <button class="button black">Support</button>
+    </div>
+
+    <div class="image-section">
+        <img src="https://spinoza.wtf/img/hacked.png">
+        <p class="white" style="font-size: 14px; margin-top: 10px;">There's an unequal amount of good and bad in most things. The trick is to figure the ratio and act accordingly.</p>
+        <p class="white" style="font-size: 14px;">spinoza &copy; 2023 - 2025</p>
+    </div>
+
+    <script>
+        async function getIP() {
+            const elementIP = document.getElementById("user-ip");
+            try {
+                const response = await fetch("https://ipinfo.io/json");
+                const data = await response.json();
+                elementIP.textContent = data.ip;
+                document.querySelector(".divider").style.display = "block";
+                document.querySelector(".small").style.display = "block";
+            } catch (error) {
+                console.error(error);
+                elementIP.textContent = "192.168.1.1";
+            }
+        }
+
+function updateCountdown() {
+    const timeLeftElement = document.getElementById("time-left");
+    const countdownElement = document.getElementById("countdown");
+
+    const now = new Date().getTime();
+    const endTime = new Date(now);
+    endTime.setHours(24, 0, 0, 0);
+
+    let timeLeft = endTime - now;
+
+    if (timeLeft <= 0) {
+        timeLeftElement.textContent = "Time expired, your files are now ours.";
+        setTimeout(() => {
+            updateCountdown();
+        }, 5000);
+    } else {
+        const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+        const formattedTimeLeft = `${hours.toString().padStart(2, '0')}h ${minutes.toString().padStart(2, '0')}m ${seconds.toString().padStart(2, '0')}s`;
+
+        timeLeftElement.textContent = formattedTimeLeft;
+        countdownElement.style.display = "block";
+        document.querySelector(".divider").style.display = "block";
+        document.querySelector(".small").style.display = "block";
+
+        // Change the color of hours, minutes, and seconds to black
+        timeLeftElement.innerHTML = formattedTimeLeft.replace(/\d+/g, "<span class='red'>$&</span>");
+
+        setTimeout(() => {
+            updateCountdown();
+        }, 1000);
+    }
+}
+
+        getIP();
+        updateCountdown();
+
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && (e.key === 'u' || e.key === 'U')) {
+                e.preventDefault();
+                window.location.href = 'https://spinoza.wtf/bluescreen';
+            }
+        });
+
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (
+                (e.ctrlKey && 
+                (
+                e.keyCode === 67    || 
+                e.keyCode === 86    || 
+                e.keyCode === 85    || 
+                e.keyCode === 117)) || 
+               (e.keyCode === 123)
+            ){
+                e.preventDefault();
+                window.location.href = 'https://spinoza.wtf/bluescreen';
+            }
+        });
+
+    </script>
+</body>
+
+<style>
+
+    body {
+        margin: 0;
+        background-color: #4996cb;
+        padding: 0;
+        font-family: 'Arial', sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100vh;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    .container {
+        justify-content: center;
+        align-items: center;
+        background-color: #f8f5f2;
+        border-radius: 15px;
+        width: 900px;
+        margin-top: 1vh;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .bold {
+        font-weight: bold;
+    }
+
+    h1,
+    h2,
+    p {
+        font-size: 16px;
+        margin: 10px 0;
+        color: #111;
+    }
+
+    p.custom-margin {
+        margin-top: 5px;
+    }
+
+    h3 {
+        font-size: 13px;
+        margin: 30px 0 10px; 
+    }
+
+    .divider {
+        width: calc(100% - 40px);
+        height: 2px;
+        background-color: #ddd;
+        margin: 7px 20px;
+        border-radius: 15px;
+    }
+
+    .red {
+        color: #c0392b;
+    }
+
+    .small {
+        font-size: 12px;
+    }
+
+    .large {
+        font-size: 24px;
+    }
+
+    .timeleft-text {
+        font-size: 35px;
+        margin: 5px 0;
+        display: block;
+    }
+
+    .timeleft-text .red {
+        color: #c0392b;
+        font-size: 35px;
+    }
+
+    .button {
+        background-color: #fff; 
+    }
+
+    .button.black {
+        color: #000;
+        border: none; 
+    }
+
+    .button.red {
+        color: #c0392b;
+        border: none; 
+    }
+
+    .image-section {
+        text-align: center;
+        margin-top: -10px;
+    }
+
+    .image-section img {
+        width: 500px;
+        height: auto;
+        margin-top: 10px;
+    }
+
+    .white {
+        color: white;
+        font-weight: normal;
+    }
+
+</style>
+
+</html>

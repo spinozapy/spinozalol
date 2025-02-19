@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta property="og:title" content="Spinoza">
+    <meta property="og:image" content="https://spinoza.wtf/img/spinoza.png">
+    <meta property="og:site_name" content="spinoza.wtf">
+    <meta property="og:description" content="root@spinoza:~$">
+    <title>{ spinoza.wtf }</title>
+    <link rel="icon" type="image/x-icon" href="https://spinoza.wtf/favicon.ico">
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        iframe {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+    <iframe id="gameIframe" src="https://demogamesfree.pragmaticplay.net/gs2c/openGame.do?gameSymbol=vs20fruitswx&amp;websiteUrl=https%3A%2F%2Fdemogamesfree.pragmaticplay.net&amp;jurisdiction=99&amp;lobby_url=https%3A%2F%2Fwww.pragmaticplay.com%2Fen%2F&amp;lang=EN&amp;cur=US" scrolling="yes"></iframe>
+
+    <script>
+        const iframe = document.getElementById('gameIframe');
+
+        iframe.addEventListener('click', function() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(() => {
+                });
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+    if (e.ctrlKey && (e.key === 'u' || e.key === 'U')) {
+        e.preventDefault();
+    }
+});
+
+document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+});
+
+document.addEventListener('keydown', function(e) {
+    if (
+        (e.ctrlKey && 
+        (
+        e.keyCode === 67    || 
+        e.keyCode === 86    || 
+        e.keyCode === 85    || 
+        e.keyCode === 117)) || 
+       (e.keyCode === 123)
+    ){
+        e.preventDefault();
+    }
+});
+    </script>
+</body>
+</html>
