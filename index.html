@@ -326,7 +326,7 @@ setTimeout(() => {
 
 document.addEventListener('DOMContentLoaded', function() {
     const element = document.getElementById('hellofriendEffect');
-    const text = "/Spinoza & /Support";
+    const text = ["/Spinoza", " & ", "/Support"];
     const links = {
         "/Spinoza": "https://killwith.fun/spinoza",
         "/Support": "https://killwith.fun/support"
@@ -335,21 +335,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function typeWriter(callback) {
         if (index < text.length) {
-            let char = text.charAt(index);
-            element.innerHTML += char;
+            if (links[text[index]]) {
+                element.innerHTML += `<a href="${links[text[index]]}" style="color: #3366cc; font-weight: bold; text-decoration: none;">${text[index]}</a>`;
+            } else {
+                element.innerHTML += text[index];
+            }
             index++;
-            setTimeout(() => typeWriter(callback), 77);
+            setTimeout(() => typeWriter(callback), 300);
         } else if (callback) {
-            setTimeout(callback, 200);
-        } else {
-            applyLinks();
+            callback();
         }
-    }
-
-    function applyLinks() {
-        element.innerHTML = element.innerHTML
-            .replace("/Spinoza", `<a href="${links["/Spinoza"]}" style="color: #3366cc; font-weight: bold; text-decoration: none;">/Spinoza</a>`)
-            .replace("/Support", `<a href="${links["/Support"]}" style="color: #3366cc; font-weight: bold; text-decoration: none;">/Support</a>`);
     }
 
     setTimeout(() => {
