@@ -381,37 +381,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 });
-        document.addEventListener('DOMContentLoaded', (event) => {
-            let keys = ['w', 'w', 's', 's', 'a', 'd', 'a', 'd', 'b', 'a'];
-            let userInput = [];
-
-            document.addEventListener('keydown', function(e) {
-                const key = e.key.toLowerCase();
-                userInput.push(key);
-                if (userInput.length > keys.length) {
-                    userInput.shift();
-                }
-                if (userInput.join('') === keys.join('')) {
-                    window.location.href = 'https://killwith.fun/konami';
-                }
-            });
-        });
-
-        document.addEventListener('DOMContentLoaded', (event) => {
-            let keys = ['l', 'e', 'a', 'k'];
-            let userInput = [];
-
-            document.addEventListener('keydown', function(e) {
-                const key = e.key.toLowerCase();
-                userInput.push(key);
-                if (userInput.length > keys.length) {
-                    userInput.shift();
-                }
-                if (userInput.join('') === keys.join('')) {
-                    window.open('https://leak.run', '_blank');
-                }
-            });
-        });
 
     document.addEventListener('DOMContentLoaded', function() {
     const section1 = document.getElementById('contactSection1');
