@@ -4,10 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=0.7 user-scalable=no" />
-    <meta property="og:title" content="Who is Spinoza?">
-    <meta property="og:image" content="https://killwith.fun/img/spinoza.png">
+    <meta property="og:title" content="Spinoza & Support">
     <meta property="og:site_name" content="killwith.fun">
-    <meta property="og:description" content="Information about Spinoza and contact details.">
+    <meta property="og:description" content="Information and contact details about Spinoza and Support.">
     <title> { killwith.fun } </title>
     <link rel="stylesheet" href="https://killwith.fun/fonts/inter.css">
     <link rel="stylesheet" href="https://killwith.fun/npm/@spinoza/style/style.css">
@@ -107,31 +106,6 @@
             scrollbar-width: none;
         }
 
-        .python {
-            color: #4B8BBE;
-            text-shadow: 0px 0px 2px #4B8BBE;
-        }
-
-        .csharp {
-            color: #178600;
-            text-shadow: 0px 0px 2px #178600;
-        }
-
-        .cplusplus {
-            color: #F34B7D;
-            text-shadow: 0px 0px 2px #F34B7D;
-        }
-
-        .java {
-            color: #e86f00;
-            text-shadow: 0px 0px 2px #913721;
-        }
-
-        .javascript {
-            color: #F7DF1E;
-            text-shadow: 0px 0px 2px #F7DF1E;
-        }
-
         blockquote {
             opacity: 0.9;
             border-radius: 15px;
@@ -178,7 +152,7 @@
     <header style="padding-bottom: 10px !important">
         <h1><span id="typingEffect"></span></h1>
         <nav>
-            <p id="hellofriendEffect"></p>
+            <p id="spinozaandsupport"></p>
         </nav>
     </header>
 
@@ -189,37 +163,18 @@
     </div>
 
     <script>
-        const typingElement = document.getElementById("typingEffect");
-        const titleElement = document.querySelector("title");
-        const languages = ["fun"];
-        const languageColors = {
-            fun: "#950606"
-        };
-        let index = 0;
+    document.addEventListener('DOMContentLoaded', function () {
+    const typingElement = document.getElementById("typingEffect");
+    const titleElement = document.querySelector("title");
+    
+    const textBefore = "killwith.";
+    const textAfter = "fun";
+    const color = "#950606";  // "fun" yazısının rengi
 
-        function typeText() {
-            if (index < languages.length) {
-                const currentText = languages[index];
-                const newText = `${currentText}`;
+    typingElement.innerHTML = `${textBefore}<span style="color: ${color}">${textAfter}</span>`; 
+    titleElement.innerText = '{ Spinoza & Support }'; 
+});
 
-                typingElement.innerHTML = `killwith.<span style="color: ${languageColors[currentText]}">${newText}</span>`;
-                titleElement.innerText = '{ Spinoza & Support }'; 
-
-                index++;
-                setTimeout(() => {
-                    typeText();
-                }, 777);
-            } else {
-                index = 0;
-                setTimeout(() => {
-                    typeText();
-                }, 777);
-            }
-        }
-
-        setTimeout(() => {
-            typeText();
-        }, 777);
 
         document.addEventListener('keydown', function (e) {
             if (e.ctrlKey && (e.key === 'u' || e.key === 'U')) {
@@ -252,7 +207,7 @@
 
     <script>
     document.addEventListener('DOMContentLoaded', function () {
-    const element = document.getElementById('hellofriendEffect');
+    const element = document.getElementById('spinozaandsupport');
     const text = ["/Spinoza", " & ", "/Support"];
     const links = {
         "/Spinoza": "https://killwith.fun/spinoza",
@@ -297,25 +252,6 @@
     }, 777);
 });
 
-    </script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const section1 = document.getElementById('contactSection1');
-            const section2 = document.getElementById('contactSection2');
-
-            setInterval(toggleContactSections, 5000);
-
-            function toggleContactSections() {
-                if (section1.style.display === 'none') {
-                    section1.style.display = 'block';
-                    section2.style.display = 'none';
-                } else {
-                    section1.style.display = 'none';
-                    section2.style.display = 'block';
-                }
-            }
-        });
     </script>
 </body>
 </html>
