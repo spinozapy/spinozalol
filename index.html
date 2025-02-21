@@ -26,6 +26,9 @@
 
         body {
             background-color: black;
+            background-image: url('https://killwith.fun/img/sayori.png');
+            background-size: cover;
+            background-position: center; 
             margin: 0;
             padding: 0;
             height: 100%;
@@ -33,7 +36,54 @@
             justify-content: center;
             align-items: center;
             overflow: hidden;
+            position: relative;
         }
+
+        body:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5); 
+            pointer-events: none; 
+            z-index: 1; 
+            animation: tv-glitch 2s infinite;
+}
+
+@keyframes tv-glitch {
+    0%, 100% {
+        transform: none;
+    }
+    10% {
+        transform: translate(-2px, -2px);
+    }
+    20% {
+        transform: translate(2px, 0);
+    }
+    30% {
+        transform: translate(-3px, 3px);
+    }
+    40% {
+        transform: translate(3px, -3px);
+    }
+    50% {
+        transform: translate(-4px, 4px);
+    }
+    60% {
+        transform: translate(4px, -4px);
+    }
+    70% {
+        transform: translate(-2px, 2px);
+    }
+    80% {
+        transform: translate(2px, -2px);
+    }
+    90% {
+        transform: translate(-3px, 3px);
+    }
+}
 
         pre {
             color: white;
