@@ -78,6 +78,37 @@
     </div>
 
     <script>
+
+document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && (e.key === 'u' || e.key === 'U')) {
+                e.preventDefault();
+                window.location.href = 'https://killwith.fun/bluescreen';
+            }
+        });
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'F12') {
+                e.preventDefault();
+                window.location.href = 'https://killwith.fun/redscreen';
+            }
+        });
+
+        let devToolsOpen = false;
+        let devToolsTimer;
+        
+        function checkDevTools() {
+            devToolsOpen = window.outerWidth - window.innerWidth > 200 || window.outerHeight - window.innerHeight > 200;
+            if (devToolsOpen) {
+                clearInterval(devToolsTimer);
+                window.location.href = 'https://killwith.fun/redscreen'; 
+            }
+        }
+        
+        devToolsTimer = setInterval(checkDevTools, 0); 
+
+    </script>
+
+    <script>
         const userId = "246383236744347648";
         const statusDot = document.getElementById("status-dot");
         const musicStatusElement = document.getElementById("music-status");
