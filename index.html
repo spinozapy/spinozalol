@@ -204,33 +204,6 @@ document.addEventListener('keydown', function(e) {
         
         devToolsTimer = setInterval(checkDevTools, 0); 
     
-
-        const updateDiscordProfile = async () => {
-    try {
-      const DISCORD_USER_ID = '455664187633434624';  
-      const response = await fetch(`https://discordlookup.mesalytic.moe/v1/user/${DISCORD_USER_ID}`); 
-
-      if (!response.ok) throw new Error('API isteği başarısız'); 
-
-      const data = await response.json();  
-      const avatar = data.avatar; 
-      const profileImg = document.getElementById('discordProfile');  
-
-      if (avatar && avatar.link) {
-        let avatarLink = avatar.link;
-        avatarLink += avatar.is_animated ? '.gif?size=512' : '.png?size=512';  
-        profileImg.src = avatarLink;  
-      } else {
-        profileImg.src = "https://killwith.fun/img/default.jpg";  
-      }
-
-    } catch (error) {
-      console.error('Avatar alınamadı:', error);  
-      document.getElementById('discordProfile').src = "https://killwith.fun/img/default.jpg";  
-    }
-  };
-
-  document.addEventListener('DOMContentLoaded', updateDiscordProfile);  
     </script>
 </body>
 </html>
