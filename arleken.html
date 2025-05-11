@@ -191,7 +191,7 @@
     <header style="padding-bottom: 10px !important">
         <h1>
             <span style="color: white;">{ </span>
-            <span style="color: #8B0000; text-shadow: 2px 2px 4px #8B0000;">Arleken</span>
+            <span id="arlekenText" style="color: white; transition: color 1s;">Arleken</span>
             <span style="color: white;"> }</span>
         </h1>
         <nav>
@@ -262,6 +262,14 @@
     <span style="color: gray; font-size: 17px; display: block; text-align: center; margin: 5; padding: 5;">
         ~ Most things have both good and bad; find the balance and act wisely. ~
     </span>
+
+    <script>
+    window.addEventListener("DOMContentLoaded", () => {
+        setTimeout(() => {
+            document.getElementById("arlekenText").style.color = "#8B0000";
+        }, 500);
+    });
+</script>
 
 <script>
 
