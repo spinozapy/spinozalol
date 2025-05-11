@@ -208,31 +208,25 @@ document.addEventListener('keydown', function(e) {
         updateDiscordProfile();
     });
 
-    async function updateDiscordProfile() {
+    document.addEventListener('DOMContentLoaded', async () => {
     const DISCORD_USER_ID = '455664187633434624';
     const DEFAULT_AVATAR = "https://killwith.fun/img/default.jpg";
-    const imgElement = document.getElementById('discordProfile');
+    const img = document.getElementById("discordProfile");
 
     try {
         const res = await fetch(`https://api.lanyard.rest/v1/users/${DISCORD_USER_ID}`);
-        if (!res.ok) throw new Error('API fetch failed');
-
         const json = await res.json();
-        const user = json.data.discord_user;
+        const avatar = json.data.discord_user.avatar;
 
-        if (user && user.avatar) {
-            const avatarURL = `https://cdn.discordapp.com/avatars/${DISCORD_USER_ID}/${avatar}.png?size=512`;
-            imgElement.src = avatarURL;
+        if (avatar) {
+            img.src = `https://cdn.discordapp.com/avatars/${DISCORD_USER_ID}/${avatar}.png?size=512`;
         } else {
-            imgElement.src = DEFAULT_AVATAR;
+            img.src = DEFAULT_AVATAR;
         }
-    } catch (err) {
-        console.error('Fetch error:', err);
-        imgElement.src = DEFAULT_AVATAR;
+    } catch (e) {
+        img.src = DEFAULT_AVATAR;
     }
-}
-
-document.addEventListener('DOMContentLoaded', updateDiscordProfile);
+});
         
     </script>
 </body>
