@@ -31,9 +31,11 @@
         }
 
         html, body {
-            overflow: hidden !important;
             height: 100%;
             width: 100%;
+            min-width: 600px; 
+            min-height: 500px; 
+            overflow: auto !important;
             background-image: linear-gradient(rgba(0, 0, 0, 0.50), rgba(0, 0, 0, 0.9)),
             url(https://spinoza.lol/img/back.png);
             background-size: cover;
@@ -221,29 +223,43 @@
         window.onmouseup = () => isDragging = false;
 
         function animate() {
-            if (!isMobile && isReady) {
-                if (!isDragging) {
-                    const rect = container.getBoundingClientRect();
-                    if (posX + rect.width >= window.innerWidth) { posX = window.innerWidth - rect.width; velX = -Math.abs(velX); }
-                    else if (posX <= 0) { posX = 0; velX = Math.abs(velX); }
+        if (!isMobile && isReady) {
+            if (!isDragging) {
+                const rect = container.getBoundingClientRect();
+            
+                let maxX = Math.max(0, window.innerWidth - rect.width);
+                let maxY = Math.max(0, window.innerHeight - rect.height);
 
-                    if (posY + rect.height >= window.innerHeight) { posY = window.innerHeight - rect.height; velY = -Math.abs(velY); }
-                    else if (posY <= 0) { posY = 0; velY = Math.abs(velY); }
-
-                    if (Math.abs(velX) > baseSpeed) velX *= friction;
-                    if (Math.abs(velY) > baseSpeed) velY *= friction;
-                    if (Math.abs(velX) < baseSpeed) velX = (velX > 0 ? baseSpeed : -baseSpeed);
-                    if (Math.abs(velY) < baseSpeed) velY = (velY > 0 ? baseSpeed : -baseSpeed);
-
-                    posX += velX * speedMultiplier;
-                    posY += velY * speedMultiplier;
+                if (posX >= maxX) { 
+                    posX = maxX; 
+                    velX = -Math.abs(velX); 
+                } else if (posX <= 0) { 
+                    posX = 0; 
+                    velX = Math.abs(velX); 
                 }
-                container.style.left = posX + 'px';
-                container.style.top = posY + 'px';
-            }
-            requestAnimationFrame(animate);
-        }
 
+                if (posY >= maxY) { 
+                    posY = maxY; 
+                    velY = -Math.abs(velY); 
+                } else if (posY <= 0) { 
+                    posY = 0; 
+                    velY = Math.abs(velY); 
+                }
+
+                if (Math.abs(velX) > baseSpeed) velX *= friction;
+                if (Math.abs(velY) > baseSpeed) velY *= friction;
+                if (Math.abs(velX) < baseSpeed) velX = (velX > 0 ? baseSpeed : -baseSpeed);
+                if (Math.abs(velY) < baseSpeed) velY = (velY > 0 ? baseSpeed : -baseSpeed);
+
+                posX += velX * speedMultiplier;
+                posY += velY * speedMultiplier;
+            }
+        
+            container.style.left = posX + 'px';
+            container.style.top = posY + 'px';
+        }
+        requestAnimationFrame(animate);
+    }
         async function fetchDiscord() {
     try {
 
