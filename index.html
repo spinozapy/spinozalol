@@ -243,29 +243,36 @@
         }
 
         async function fetchDiscord() {
-            try {
-                const r = await fetch(`https://discord.com/api/v9/invites/${INVITE_CODE}?with_counts=true`);
-                const data = await r.json();
-                const g = data.guild || {};
-                document.getElementById('guild-name').innerText = g.name || "palyacolar";
-                document.getElementById('online-count').innerText = data.approximate_presence_count || "200+";
-                document.getElementById('total-count').innerText = data.approximate_member_count || "1100+";
-                const icon = g.id ? `https://cdn.discordapp.com/icons/${g.id}/${g.icon}.png?size=256` : "https://spinoza.lol/img/discordpp.png";
-                document.getElementById('guild-icon').src = icon;
-                const bannerUrl = g.banner ? `https://cdn.discordapp.com/banners/${g.id}/${g.banner}.png?size=1024` : "https://spinoza.lol/img/discordbanner.png";
-                document.getElementById('guild-banner').style.backgroundImage = `url('${bannerUrl}')`;
-                
-                setTimeout(() => {
-                    container.style.opacity = "1";
-                    setTimeout(() => {
-                        isReady = true;
-                    }, 800);
-                }, 100);
-            } catch (e) {
-                container.style.opacity = "1";
-                isReady = true;
-            }
-        }
+    try {
+
+        const r = await fetch(`https://discord.com/api/v9/invites/${INVITE_CODE}?with_counts=true`);
+        
+        if (!r.ok) throw new Error('API Hatası');
+
+        const data = await r.json();
+        const g = data.guild || {};
+
+        document.getElementById('guild-name').innerText = g.name || "palyacolar";
+        document.getElementById('online-count').innerText = data.approximate_presence_count?.toLocaleString() || "200+";
+        document.getElementById('total-count').innerText = data.approximate_member_count?.toLocaleString() || "1,100+";
+
+        const icon = g.id && g.icon ? `https://cdn.discordapp.com/icons/${g.id}/${g.icon}.png?size=256` : "https://spinoza.lol/img/discordpp.png";
+        document.getElementById('guild-icon').src = icon;
+
+        const bannerUrl = g.id && g.banner ? `https://cdn.discordapp.com/banners/${g.id}/${g.banner}.png?size=1024` : "https://spinoza.lol/img/discordbanner.png";
+        document.getElementById('guild-banner').style.backgroundImage = `url('${bannerUrl}')`;
+
+    } catch (e) {
+        console.error("Discord verisi çekilemedi:", e);
+        document.getElementById('online-count').innerText = "200+";
+        document.getElementById('total-count').innerText = "1,100+";
+    } finally {
+        container.style.opacity = "1";
+        setTimeout(() => {
+            isReady = true;
+        }, 800);
+    }
+}
 
         window.onload = () => {
             initPosition();
